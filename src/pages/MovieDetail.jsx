@@ -61,35 +61,13 @@ const MovieDetail = ({movies}) => {
           <Details>
             <h1>{movie.title}</h1>
             <div style={{ textAlign: "left", marginLeft: "1rem" }}>
-              <p>
-                Description: {" "}
-                {movie.summary}
-              </p>
-              
-              <p>
-                Year: {" "}
-                {movie.year}
-              </p>
-              <p>
-                Genre: {" "}
-                {movie.genre}
-              </p>
-              <p>
-                Ratings:  {" "}
-                {movie.ratings}
-              </p>
-              <p>
-                Director: {" "}
-                {movie.director}
-              </p>
-              <p>
-                Writer: {" "}
-                {movie.writer}
-              </p>
-              <p>
-                Cast: {" "}
-                {movie.cast}
-              </p>
+              <p>Description: {" "} {movie.summary}</p>
+              <p>Year: {" "}{movie.year}</p>
+              <p>Genre: {" "}{movie.genre}</p>
+              <p>Ratings: {" "}{movie.ratings}</p>
+              <p>Director: {" "}{movie.director}</p>
+              <p>Writer: {" "}{movie.writer}</p>
+              <p>Cast: {" "}{movie.cast}</p>
               <div className="btn-container">
                 <Button onClick={handleStarClick}>
                   {starred ? 'Starred' : 'Star'}
@@ -99,7 +77,6 @@ const MovieDetail = ({movies}) => {
                 </Button>
               </div>              
             </div>
-      
           </Details>
         </DetailCard>
       </Container>

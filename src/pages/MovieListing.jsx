@@ -1,7 +1,9 @@
-import React ,{ useState } from 'react'
+import React ,{ useState , useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import styled from "styled-components";
 import MovieCard from './MovieCard';
+import { movies } from "../data" ;
+import AddMovie from './AddMovie';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -23,18 +25,37 @@ cursor: pointer;
 const Bottom = styled.div`
 `;
 
-const MovieListing = ({movies}) => {
+const MovieListing = () => {
     const [filterGenre, setFilterGenre] = useState('All');
     const [filterYear, setFilterYear] = useState('Release Year');
     const [filterRating, setFilterRating] = useState('Rating');
     const [searchQuery, setSearchQuery] = useState('');
+    const [allMovies, setAllMovies] = useState(movies);
+    const [showAddMovieForm, setShowAddMovieForm] = useState(false);
 
-    const filteredMovies = movies.filter(movie => {
+    useEffect(() => {
+      const storedMovies = JSON.parse(localStorage.getItem('movies')) || [];
+      setAllMovies(storedMovies);
+    }, []);
+  
+    useEffect(() => {
+      localStorage.setItem('movies', JSON.stringify(allMovies));
+    }, [allMovies]);
+  
+    const handleMovieAdded = newMovie => {
+      setAllMovies(prevMovies => [...prevMovies, newMovie]);
+      setShowAddMovieForm(false);
+    };
+    const handleCancelAddMovie = () => {
+        setShowAddMovieForm(false);
+      };
+    const filteredMovies = allMovies.filter(movie => {
     const matchesGenre = filterGenre === 'All' || movie.genre.includes(filterGenre);
     const matchesYear = filterYear === 'Release Year' || movie.year.toString() === filterYear;
     const matchesRating = filterRating === 'Rating' || movie.rating.toString() === filterRating;
     return matchesGenre && matchesYear && matchesRating;
     });
+
     const searchedMovies = filteredMovies.filter(movie => {
         const lowerCaseSearchQuery = searchQuery.toLowerCase();
         return (
@@ -43,6 +64,7 @@ const MovieListing = ({movies}) => {
           movie.director.toLowerCase().includes(lowerCaseSearchQuery)
         );
       });
+
     const genreArr = ["All Genre","Drama","Crime","Action","Adventure","Fantasy","Romance","Sci-Fi","Biography"]
     const yearArr = ['Release Year',1994,1992,2008,2003,2010,1999,1991,2001,]
     const ratingArr = ['Rating',5,6,7,8,9,10]
@@ -62,11 +84,8 @@ const MovieListing = ({movies}) => {
                 <select value={filterRating} onChange={e => setFilterRating(e.target.value)}>
                     {ratingArr.map(rating => <option value={rating}> {rating} </option>)}
                 </select>
-                
-                <Link to={`/movie/add`} style={{ textDecoration: 'none', color: 'black' }}>
-                    <Add>New</Add>
-                </Link>
-
+                <Add onClick={() => setShowAddMovieForm(true)}>New</Add>
+                {showAddMovieForm && <AddMovie onMovieAdded={handleMovieAdded} onClose={handleCancelAddMovie} />}
             </Top>
             <Bottom>
             {searchedMovies.map(movie => (

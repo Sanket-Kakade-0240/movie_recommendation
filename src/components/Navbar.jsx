@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Search } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
 height: 80px;
@@ -83,9 +84,13 @@ const Navbar = ({ onSearch }) => {
         </Center>
         <Right>
           <MenuItem>Movies</MenuItem>
-          <MenuItem>Watch list</MenuItem>
           <MenuItem>
-            Starred Movies
+            <Link to={`/movie/watchlater`} style={{ textDecoration: 'none', color: 'white' }}>Watch list
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to={`/movie/starred`} style={{ textDecoration: 'none', color: 'white' }}>Starred Movies
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>
