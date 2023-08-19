@@ -83,7 +83,10 @@ const Navbar = ({ onSearch }) => {
             </SearchContainer>
         </Center>
         <Right>
-          <MenuItem>Movies</MenuItem>
+          <MenuItem>
+            <Link to={`/`} style={{ textDecoration: 'none', color: 'white' }}>Movies
+            </Link>
+          </MenuItem>
           <MenuItem>
             <Link to={`/movie/watchlater`} style={{ textDecoration: 'none', color: 'white' }}>Watch list
             </Link>

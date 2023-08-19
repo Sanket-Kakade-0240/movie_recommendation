@@ -87,11 +87,18 @@ const MovieListing = () => {
                 <Add onClick={() => setShowAddMovieForm(true)}>New</Add>
                 {showAddMovieForm && <AddMovie onMovieAdded={handleMovieAdded} onClose={handleCancelAddMovie} />}
             </Top>
-            <Bottom>
+            {/* <Bottom>
             {searchedMovies.map(movie => (
                 <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none', color: 'black' }} >
                 <MovieCard key={movie.id} movie={movie} /> 
                 </Link>
+            ))}
+            </Bottom> */}
+            <Bottom>
+            {searchedMovies.map(movie => (
+            <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none', color: 'black' }} key={movie.id}>
+            <MovieCard movie={movie} />
+            </Link>
             ))}
             </Bottom>
         </Container>
