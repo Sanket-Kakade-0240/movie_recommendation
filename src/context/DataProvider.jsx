@@ -12,7 +12,7 @@ const DataProvider = ({children}) => {
     JSON.parse(localStorage.getItem("watchList")) || []
   );
   useEffect(() => {
-    localStorage.setItem('movies', JSON.stringify(allMovies));
+    localStorage.setItem('movies', JSON.stringify(movies));
     localStorage.setItem("watchList", JSON.stringify(watchList));
   }, [allMovies,watchList]);
 

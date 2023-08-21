@@ -21,7 +21,7 @@ const MovieListing = () => {
     const handleCancelAddMovie = () => {
       setShowAddMovieForm(false);
     };
-
+    console.log("allmovie",allMovies)
     const filteredMovies = allMovies.filter(movie => {
     const matchesGenre = filterGenre === 'All' || movie.genre.includes(filterGenre);
     const matchesYear = filterYear === 'Release Year' || movie.year.toString() === filterYear;

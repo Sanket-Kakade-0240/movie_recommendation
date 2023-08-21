@@ -8,7 +8,7 @@ const MovieCard = ({ movie }) => {
   const handleStarClick = () => {
     setStarred(!starred);
   };
-
+  console.log('watch -',watchList );
   return (
     <div className="movie-card">
       <img src={movie.imageURL} alt={movie.title} />

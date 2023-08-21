@@ -10,7 +10,6 @@ padding: 1rem;
 
 const WatchLater = () => {
   const {watchList,removeFromWatchList} = useData();
-
   return (
     <div>
   <Navbar />
