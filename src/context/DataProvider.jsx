@@ -4,29 +4,36 @@ import { movies } from "../data";
 const DataContext = createContext()
 
 const DataProvider = ({children}) => {
-  const [watchLaterVideos, setWatchLaterVideos] = useState(JSON.parse(localStorage.getItem('watchLaterVideos')) || []);
 
+  const [allMovies, setAllMovies] = useState(
+    JSON.parse(localStorage.getItem('movies')) || movies
+  );  
+  const [watchList, setWatchList] = useState(
+    JSON.parse(localStorage.getItem("watchList")) || []
+  );
   useEffect(() => {
-    localStorage.setItem('watchLaterVideos', JSON.stringify(watchLaterVideos));
-  }, [watchLaterVideos]);
+    localStorage.setItem('movies', JSON.stringify(allMovies));
+    localStorage.setItem("watchList", JSON.stringify(watchList));
+  }, [allMovies,watchList]);
 
-  const removeVideoFromWatchLater = (id) => {
-    setWatchLaterVideos((prevWatchLaterVideos) =>
-      prevWatchLaterVideos.filter((movie) => movie._id !== id)
+  const removeFromWatchList = (id) => {
+    setWatchList((prevWatchList) =>
+      prevWatchList.filter((movie) => movie._id !== id)
     );
   };
-  const toggleWatchLater = (id) => {
-    if (watchLaterVideos.some((movie) => movie._id === id)) {
-      setWatchLaterVideos((prevWatchLaterVideos) =>
-        prevWatchLaterVideos.filter((movie) => movie._id !== id)
+  const toggleWatchList = (id) => {
+    if (watchList.some((movie) => movie._id === id)) {
+      setWatchList((prevWatchList) =>
+        prevWatchList.filter((movie) => movie._id !== id)
       );
     } else {
       const movieToAdd = movies.find((movie) => movie._id === id);
-      setWatchLaterVideos((prevWatchLaterVideos) => [...prevWatchLaterVideos, movieToAdd]);
+      setWatchList((prevWatchList) => [...prevWatchList, movieToAdd]);
     }
   };
+
   return (
-    <DataContext.Provider value={{watchLaterVideos,setWatchLaterVideos,removeVideoFromWatchLater,toggleWatchLater}}> 
+    <DataContext.Provider value={{ allMovies,setAllMovies,setWatchList,removeFromWatchList,toggleWatchList}}> 
         {children}
 
     </DataContext.Provider>

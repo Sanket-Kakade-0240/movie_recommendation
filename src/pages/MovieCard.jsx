@@ -3,7 +3,7 @@ import { useData } from '../context/DataProvider';
 
 const MovieCard = ({ movie }) => {
   const [starred, setStarred] = useState(false);
-  const { watchLaterVideos, toggleWatchLater } = useData();
+  const { watchList, toggleWatchList } = useData();
 
   const handleStarClick = () => {
     setStarred(!starred);
@@ -19,11 +19,9 @@ const MovieCard = ({ movie }) => {
           <button onClick={handleStarClick}>
             {starred ? 'Starred' : 'Star'}
           </button>
-          {/* <button onClick={handleWatchlistClick}>
-            {watchLaterVideos.some((m) => m._id === movie._id) ? 'Added to Watchlist' : 'Add to Watchlist'}
-          </button> */}
-          <button onClick={() => toggleWatchLater(movie.id)}>
-          {watchLaterVideos.some((m) => m._id === movie.id)
+
+          <button onClick={() => toggleWatchList(movie.id)}>
+          {watchList.some((m) => m._id === movie.id)
           ? 'Added to Watchlist'
           : 'Add to Watchlist'}
           </button>
@@ -34,14 +32,16 @@ const MovieCard = ({ movie }) => {
 };
 
 export default MovieCard;
-
+          // {/* <button onClick={handleWatchlistClick}>
+          //   {watchList.some((m) => m._id === movie._id) ? 'Added to Watchlist' : 'Add to Watchlist'}
+          // </button> */}
 // import React, {  useState } from 'react';
 // import { useData } from '../context/DataProvider';
 
 // const MovieCard = ({ movie }) => {
 //   const [starred, setStarred] = useState(false);
 //   const [addedToWatchlist, setAddedToWatchlist] = useState(false);
-//   const [watchLaterVideos,toggleWatchLater] = useData();
+//   const [watchList,toggleWatchList] = useData();
 //   const handleStarClick = () => {
 //     setStarred(!starred);
 //   };
@@ -62,15 +62,15 @@ export default MovieCard;
 //         {starred ? 'Starred' : 'Star'}
 //       </button>
       
-//       <button onClick={() => toggleWatchLater(movie._id)}>
-//         {watchLaterVideos.some((m) => m._id === movie._id) ? 'Added to Watchlist' : 'Add to Watchlist'}
+//       <button onClick={() => toggleWatchList(movie._id)}>
+//         {watchList.some((m) => m._id === movie._id) ? 'Added to Watchlist' : 'Add to Watchlist'}
 //       </button>
       
 //       {/* <button onClick={handleWatchlistClick}>
 //         {addedToWatchlist ? 'Added to Watchlist' : 'Add to Watchlist'}
 //       </button> */}
-//       {/* onClick={() => toggleWatchLater(video._id)}>
-//                   {watchLaterVideos.some((v) => v._id === video._id) ? <ClockFill/> : <Clock/>} */}
+//       {/* onClick={() => toggleWatchList(video._id)}>
+//                   {watchList.some((v) => v._id === video._id) ? <ClockFill/> : <Clock/>} */}
 //       </div>
       
 //       </div>

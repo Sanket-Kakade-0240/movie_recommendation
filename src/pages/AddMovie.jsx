@@ -1,9 +1,7 @@
 import React, { useState }  from 'react'
-// import Navbar from '../components/Navbar'
 import styled from "styled-components";
 
 const Container = styled.div`
-
 `;
 const Title = styled.h2`
 `
@@ -11,7 +9,6 @@ const Form = styled.form`
 display: flex;
 flex-direction: column;
 `
-
 const Input = styled.input`
 padding: 8px;
 margin-top: 0.4rem;
@@ -26,15 +23,15 @@ border: 1px solid lightgray;
 `
 const AddMovie = ({ onMovieAdded , onClose }) => {
     const [formData, setFormData] = useState({
-        title: '',
-        summary: '',
-        year: '',
-        cast: '',
-        genre: '',
-        rating: '',
-        director: '',
-        writer: '',
-        imageURL: '',
+        title: "",
+        summary: "",
+        year: "",
+        cast: "",
+        genre: "",
+        rating: "",
+        director: "",
+        writer: "",
+        imageURL: "",
       });
     
       const handleInputChange = event => {
@@ -49,30 +46,30 @@ const AddMovie = ({ onMovieAdded , onClose }) => {
         event.preventDefault();
         onMovieAdded(formData);
         setFormData({
-          title: '',
-          summary: '',
-          year: '',
-          cast: '',
-          genre: '',
-          rating: '',
-          director: '',
-          writer: '',
-          imageURL: '',
+          title: "",
+          summary: "",
+          year: "",
+          cast: "",
+          genre: "",
+          rating: "",
+          director: "",
+          writer: "",
+          imageURL: "",
         });
       };
       
       const handleCancel = () => {
         onClose();
         setFormData({
-          title: '',
-          summary: '',
-          year: '',
-          cast: '',
-          genre: '',
-          rating: '',
-          director: '',
-          writer: '',
-          imageURL: '',
+          title: "",
+          summary: "",
+          year: "",
+          cast: "",
+          genre: "",
+          rating: "",
+          director: "",
+          writer: "",
+          imageURL: "",
         });
       };
     return (
@@ -93,7 +90,6 @@ const AddMovie = ({ onMovieAdded , onClose }) => {
             <label>
               Summary: <br />
               <Textarea
-                type="text"
                 name="summary"
                 value={formData.summary}
                 onChange={handleInputChange}
@@ -154,15 +150,14 @@ const AddMovie = ({ onMovieAdded , onClose }) => {
               />
             </label>
             <label>
-              Image URL:  <br />
+              Image URL: <br />
               <Input
                 type="text"
-                name="image"
+                name="imageURL" 
                 value={formData.imageURL}
                 onChange={handleInputChange}
               />
             </label>
-            
             <button type="submit" > Add Movie </button>
             <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
           </Form>

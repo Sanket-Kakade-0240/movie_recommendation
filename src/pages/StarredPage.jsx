@@ -11,6 +11,7 @@ const StarredPage = () => {
     <div>
       <Navbar />
       <Container>
+        <h1>Starred movies</h1>
         
       </Container>
     </div>
